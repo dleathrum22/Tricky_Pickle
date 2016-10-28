@@ -9,7 +9,7 @@ void loop() {
 }
 
 void SlowBlink() {
-  // THIS IS A COMMENT!!!!1!
+  
 }
 
 void Blink() {
