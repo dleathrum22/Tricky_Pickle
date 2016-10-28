@@ -20,3 +20,13 @@ void SolidLED() {
   
 }
 
+/*
+dot moving in circle
+flash
+    Lelft/Right
+    Full
+    Top/Bottom
+Full rainbow
+fading
+Blink at different speeds
+*/
