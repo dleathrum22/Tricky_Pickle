@@ -7,4 +7,6 @@ class PixelLocation {
   private:
     int numPixels;
     int curve;
+    int location;
+    int angle;
 }
