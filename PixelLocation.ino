@@ -1,5 +1,0 @@
-#include Neopixel
-
-class PixelLocation {
-
-}
