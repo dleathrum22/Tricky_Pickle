@@ -5,7 +5,7 @@ class ColorRing {
     ColorRing(int lightInitial, int lineLength, bool overwriteLap, bool rotation, int flashSpeed, uint8_t r, uint8_t g, uint8_t b);
     /*
     lightInitial - which LED is the first light thats light up
-    lineLength - length of the 
+    lineLength - length of the LEDs on
     overwriteLap
     rotation - if the lights are going turn on in a sequence, starting on lightInitial going through lineLength
     flashSpeed - int between 0 and 255 to designate the speed of the flash, 0 is off, 255 is solid
