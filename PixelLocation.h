@@ -2,8 +2,8 @@
 
 class PixelLocation {
   public:
-    PixelLocation(double Angle1, double Angle2, uint8_t r, uint8_t g, uint8_t b);
-    PixelLocation(double Angle, uint8_t r, uint8_t g, uint8_t b);
+    PixelLocation(double Angle1, double Angle2, int flashSpeed, uint8_t r, uint8_t g, uint8_t b);
+    PixelLocation(double Angle, int flashSpeed, uint8_t r, uint8_t g, uint8_t b);
   
   private:
     int numPixels;
