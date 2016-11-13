@@ -9,10 +9,9 @@ ColorRing::ColorRing(int lightInitial, int lineLength, bool overwriteLap, bool r
   angle1 = lightInitial
   int radius = 10; // in centimeters
   int circumference = 2 * PI * radius;
-  if (lineLength => circumference) { PixelLocation( 0, 0, r, g, b); }
-  if (lineLength == 1) { PixelLocation( angle1, r, g, b); }
-  angle2 = lineLength / radius; // in radians
-  angle2 = angle2 * 180 / PI; // in degrees
-  PixelLocation(angle1, angle2, r, g, b);
+  if (lineLength => circumference) { PixelLocation( 0, 0, flashSpeed, r, g, b); }
+  if (lineLength == 1) { PixelLocation( angle1, flashSpeed, r, g, b); }
+  angle2 = angle1 + ((lineLength / radius) * (180 / PI));
+  PixelLocation(angle1, angle2, flashSpeed, r, g, b);
   
 }
