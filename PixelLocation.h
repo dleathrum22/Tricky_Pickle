@@ -1,7 +1,15 @@
 /*
 PixelLocation.h
 Alex Elias
+
+Global variables needed:
+NUMBER_PIXELS
+LED_PIN
 */
+#ifndef _PixelLocation_h_
+#define _PixelLocation_h_
+
+#include "Adafruit_NeoPixel.h"
 
 class PixelLocation {
 public:
@@ -13,19 +21,44 @@ public:
 		uint16_t angle;
 	};
 
-	PixelLocation(); // TODO Constructor takes in control points
-	~PixelLocation();
+	PixelLocation(pixelAnglePair[] controlPoints, uint8_t n); // n is number of points
 	void printMap(); // For testing, print the pixel number lookup table over serial
-	void clear(); // Resets all LEDs
-	void dot(uint16_t angle, uint32_t color); // Angle is in 100ths of degrees i.e. 18000 is 180.00
-	void line(uint16_t angle1, uint16_t angle2, uint32_t color); // Line starts at angle1, goes ccw
-	void show(); // Updates LEDs for next cycle
+	void setBrightness(uint8_t b) {strip.setBrightness(b);} // Defaults to full
+	void clear() {strip.clear();} // Resets all LEDs
+	
+	/*
+	Angle is in 100ths of degrees i.e. 18000 is 180.00
+	
+	Finds the two pixels the dot is between and sets the intensity of each led proportionally
+	to how close the dot is.
+
+	For now, any previous data of the two pixels is overwritten rather than blended.
+	*/
+	void dot(uint16_t angle, uint8_t r, uint8_t g, uint8_t b);
+	
+	/*
+	The line starts at angle1 and goes CCW to angle2
+
+	The two pixels directly outside the line are found and their intensity is set as if there were
+	a dot at angle1 and angle2. All pixels between these angles are set to full intensity.
+
+	Again, for now, any previous data of the pixels being written to is overwriten, not blended.
+	*/
+	void line(uint16_t angle1, uint16_t angle2, uint8_t r, uint8_t g, uint8_t b); // 
+	void show() {strip.show()}; // Updates LEDs for next cycle
 private:
 // Setup functions
-	void generatemap(); // Using given control points, generate the pixel number lookup table
+	/*
+	Given two pixels and their angles, linearly interpolates the angles of the pixels in between
+	Pixel2 is CCW of Pixel1
+	*/
+	void generateMap(pixelAnglePair pixel1, pixelAnglePair pixel2);
 	
 // Runtime functions
 
 // Variables
 	pixelAnglePair pixelMap[NUMBER_PIXELS]; // TODO initialize to 0
+	Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 };
+
+#endif
