@@ -2,7 +2,7 @@
 
 class DisplaySignalMaker {
   public:
-    DisplaySignalMaker(); //When the input data is determined as to what is recieved via bluethooth, put them as a parameter here
+    DisplaySignalMaker(); //Sets up the PixelLocation class to be ready to alter the lights
     void Heading(int heading1); //Sets a red light to always point to the magnetic North Pole
     void Accelerameter(int x1, int y1);
   private:
