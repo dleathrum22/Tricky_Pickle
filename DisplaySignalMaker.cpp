@@ -39,4 +39,7 @@ void DisplaySignalMaker::Accelerameter( int x1, int y1 ) {
   if (angle1 > 360) { angle1 -= 360; }
   if (angle2 < 0) { angle2 += 360; }
   
+  pixie.dot(angle1, unit8_t 0, unit8_t 0, unit8_t 11111111);
+  pixie.dot(angle2, unit8_t 0, unit8_t 0, unit8_t 11111111);
+  
 }
