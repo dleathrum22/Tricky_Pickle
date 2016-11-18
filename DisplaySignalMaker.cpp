@@ -15,9 +15,9 @@ void DisplaySignalMaker::Heading( int heading1 ) {
   pixie.clear();
   heading = heading1;
   
-  int angle = heading + 270;
-  while (angle > 360) { angle -= 360; }
-  pixie.dot(angle, unit32_t 0/* make this red */);
+  int angle = (heading * 100) + 27000;
+  while (angle > 36000) { angle -= 36000; }
+  pixie.dot(angle, unit8_t 111111111, unit8_t 0, unit8_t 0);
   return;
 }
 
@@ -30,5 +30,13 @@ void DisplaySignalMaker::Accelerameter( int x1, int y1 ) {
   y = y1;
   pixie.clear();
   
+  int center = 90 - y;
+  int diff = 90 + x;
+  while (diff < 180) { diff -= 180; }
+  
+  angle1 = center + diff;
+  angle2 = center - diff;
+  if (angle1 > 360) { angle1 -= 360; }
+  if (angle2 < 0) { angle2 += 360; }
   
 }
