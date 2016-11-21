@@ -1,5 +1,13 @@
+#include <ctime>
+#include <iostream>
+
 #include "DisplaySignalMaker.h"
 #include "PixelLocation.h"
+
+void pause(int dur) {
+  int temp = time(NULL) + dur;
+  while(temp > time(NULL));
+}
 
 DisplaySignalMaker::DisplaySignalMaker() {
   pixie = new PixelLocation();
@@ -42,4 +50,15 @@ void DisplaySignalMaker::Accelerameter( int x1, int y1 ) {
   pixie.dot(angle1, unit8_t 0, unit8_t 0, unit8_t 11111111);
   pixie.dot(angle2, unit8_t 0, unit8_t 0, unit8_t 11111111);
   
+}
+
+void DisplaySignalMaker::Turn(bool isLeft, bool isRight, bool isFast, unit8_t r, unit8_t g, unit8_t b) {
+  int howSlow = 50;
+  if ( isLeft == true ) { angle = 18000; }
+  else if ( isRight == true ) { angle = 0; }
+  if ( isFast == true ) { howSlow = 10; }
+  
+  pixie.clear();
+  pause(howSlow);
+  pixie.dot(angle, r, g, b);
 }
