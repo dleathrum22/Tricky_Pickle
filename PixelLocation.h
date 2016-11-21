@@ -2,6 +2,8 @@
 PixelLocation.h
 Alex Elias
 
+TODO: const parameters
+
 Global variables needed:
 NUMBER_PIXELS
 LED_PIN
@@ -50,14 +52,14 @@ private:
 // Setup functions
 	/*
 	Given two pixels and their angles, linearly interpolates the angles of the pixels in between
-	Pixel2 is CCW of Pixel1
+	Pixel2 is CCW of Pixel1 and places them in the pixel map
 	*/
 	void generateMap(pixelAnglePair pixel1, pixelAnglePair pixel2);
 	
 // Runtime functions
 
 // Variables
-	pixelAnglePair pixelMap[NUMBER_PIXELS]; // TODO initialize to 0
+	pixelAnglePair pixelMap[NUMBER_PIXELS];
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 };
 
