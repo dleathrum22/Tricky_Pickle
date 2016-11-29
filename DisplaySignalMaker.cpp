@@ -25,7 +25,7 @@ void DisplaySignalMaker::Heading( int heading1 ) {
   
   int angle = (heading * 100) + 27000;
   while (angle > 36000) { angle -= 36000; }
-  pixie.dot(angle, unit8_t 111111111, unit8_t 0, unit8_t 0);
+  pixie.dot(angle, unit8_t 11111111, unit8_t 0, unit8_t 11111111);
   return;
 }
 
