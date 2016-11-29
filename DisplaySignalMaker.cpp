@@ -56,9 +56,26 @@ void DisplaySignalMaker::Turn(bool isLeft, bool isRight, bool isFast, unit8_t r,
   int howSlow = 50;
   if ( isLeft == true ) { angle = 18000; }
   else if ( isRight == true ) { angle = 0; }
+  else {
+    angle = 0;
+    while (angle <= 180) {
+      pixie.dot(angle, unit8_t 11111111, unit8_t 11111111, unit8_t 00000000);
+      pause(25);
+      pixie.clear();
+      angle += 5;
+    }
+    return
+  }
+  
   if ( isFast == true ) { howSlow = 10; }
   
   pixie.clear();
   pause(howSlow);
   pixie.dot(angle, r, g, b);
+}
+  
+void DisplaySignalMaker::CollisionAvoidance() {
+  angle1 = 0;
+  angle2 = 359;
+  pixie.line(angle1, angle2, unit8_t 11111111, unit8_t 00000000, unit8_t 00000000);
 }
