@@ -6,6 +6,7 @@ class DisplaySignalMaker {
     void Heading(int heading1); //Sets a red light to always point to the magnetic North Pole
     void Accelerameter(int x1, int y1);
     void Turn(bool isLeft, bool isRight, bool isFast);
+    void Uturn();
   private:
     //display signals should be stored here
     bool trigger;
