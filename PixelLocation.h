@@ -9,6 +9,9 @@ LED_PIN
 #ifndef _PixelLocation_h_
 #define _PixelLocation_h_
 
+#define NUMBER_PIXELS 20
+#define LED_PIN 6
+
 #include "Adafruit_NeoPixel.h"
 
 class PixelLocation {
@@ -21,11 +24,12 @@ public:
 		uint16_t angle;
 	};
 
-	PixelLocation(pixelAnglePair[] controlPoints, uint8_t n); // n is number of points
+	PixelLocation(pixelAnglePair* controlPoints, uint8_t n); // n is number of points
 	void printMap(); // For testing, print the pixel number lookup table over serial
 	void setBrightness(uint8_t b) {strip.setBrightness(b);} // Defaults to full
 	void clear() {strip.clear();} // Resets all LEDs
-	void show() {strip.show()}; // Updates LEDs for next cycle
+	void show() {strip.show();} // Updates LEDs for next cycle
+  void fullTest(); // Put all LEDs at full white for testing (must call show())
 	
 	/*
 	Angle is in 100ths of degrees i.e. 18000 is 180.00
