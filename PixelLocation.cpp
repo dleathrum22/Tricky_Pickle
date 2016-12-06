@@ -5,7 +5,6 @@ Alex Elias
 #include "Arduino.h"
 #include "PixelLocation.h"
 
-
 PixelLocation::PixelLocation(pixelAnglePair* controlPoints, uint8_t n) {
   strip.begin();
   
@@ -23,12 +22,12 @@ PixelLocation::PixelLocation(pixelAnglePair* controlPoints, uint8_t n) {
 
 	for (uint16_t i = 0; i < NUMBER_PIXELS; ++i) {              
 	    for(uint16_t j = 1; j < NUMBER_PIXELS - i; j++) {              
-			if(pixelMap[j-1].angle > pixelMap[j].angle) {
-				// Swap them
-				tempPair = pixelMap[j];
-				pixelMap[j] = pixelMap[j-1];
-				pixelMap[j-1] = tempPair;
-			} 
+  			if(pixelMap[j-1].angle > pixelMap[j].angle) {
+  				// Swap them
+  				tempPair = pixelMap[j];
+  				pixelMap[j] = pixelMap[j-1];
+  				pixelMap[j-1] = tempPair;
+  			} 
 	    }
     }
 }
@@ -50,13 +49,16 @@ void PixelLocation::fullTest() {
   for (int n = 0; n < NUMBER_PIXELS; ++n) {
     strip.setPixelColor(n, 255, 255, 255);
   }
+  Serial.println("Runnging full test!");
 }
 void PixelLocation::dot(uint16_t angle, uint8_t r, uint8_t g, uint8_t b) {
+  //Serial.println(angle);
 	uint16_t closest1, closest2;
 	closestPixels(angle, closest1, closest2);
 
 	// Find angle difference between closest pixels
 	uint16_t angleDelta = angleDiff(pixelMap[closest1].angle, pixelMap[closest2].angle);
+  //Serial.println(angleDelta);
 
 	// The further the dot angle from the pixel angle, the dimmer
 	uint16_t distance1 = angleDiff(pixelMap[closest1].angle, angle);
